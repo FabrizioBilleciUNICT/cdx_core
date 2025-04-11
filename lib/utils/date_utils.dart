@@ -1,7 +1,7 @@
 
 import 'package:intl/intl.dart';
 
-abstract class DateUtils {
+abstract class DatesUtils {
 
   DateTime? parse(String? input, String format) {
     final formatter = DateFormat(format);
