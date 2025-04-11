@@ -1,53 +1,35 @@
+import 'package:cdx_core/app/theme.dart';
 import 'package:flutter/material.dart';
-import '../../../constants.dart';
 import '../../models/button_theme_data.dart';
 import '../../models/color_set.dart';
 import '../../models/input_theme_data.dart';
 
-enum AppTheme { light, dark }
+enum ThemeType { light, dark }
+
+enum ScreenType { mobile, tablet, desktop, watch }
 
 abstract class IThemeService {
-  AppTheme _theme = AppTheme.light;
+  ThemeType _themeType = ThemeType.light;
+  late final ITheme _theme;
 
-  late final Map<ScreenType, ScreenPadding> _paddings;
-  ScreenPadding get paddings => (_paddings[_screenType] ?? _paddings.values.first);
+  ColorSet get light => _theme.light;
+  ColorSet get dark => _theme.dark;
+  String get fontFamily => _theme.fontFamily;
+  String get fontFamilyBold => _theme.fontFamilyBold;
 
-  late final Map<ScreenType, ScreenRadius> _radius;
-  ScreenRadius get radius => (_radius[_screenType] ?? _radius.values.first);
-
-  late final Map<ScreenType, ButtonMeasures> _button;
-  ButtonMeasures get button => (_button[_screenType] ?? _button.values.first);
-
-  late final Map<ScreenType, InputMeasures> _input;
-  InputMeasures get input => (_input[_screenType] ?? _input.values.first);
-
-  late final Map<ScreenType, TextMeasures> _text;
-  TextMeasures get text => (_text[_screenType] ?? _text.values.first);
-
-  late final Map<ScreenType, MiscMeasures> _misc;
-  MiscMeasures get misc => (_misc[_screenType] ?? _misc.values.first);
+  ScreenPadding get paddings => (_theme.paddings[_screenType] ?? _theme.paddings.values.first);
+  ScreenRadius get radius => (_theme.radius[_screenType] ?? _theme.radius.values.first);
+  ButtonMeasures get button => (_theme.button[_screenType] ?? _theme.button.values.first);
+  InputMeasures get input => (_theme.input[_screenType] ?? _theme.input.values.first);
+  TextMeasures get text => (_theme.text[_screenType] ?? _theme.text.values.first);
+  MiscMeasures get misc => (_theme.misc[_screenType] ?? _theme.misc.values.first);
   T getMisc<T extends MiscMeasures>() => misc as T;
 
-  void initialize({
-    required Map<ScreenType, ScreenPadding> paddings,
-    required Map<ScreenType, ScreenRadius> radius,
-    required Map<ScreenType, ButtonMeasures> button,
-    required Map<ScreenType, InputMeasures> input,
-    required Map<ScreenType, TextMeasures> text,
-    required Map<ScreenType, MiscMeasures> misc,
-  }) {
-    _paddings = paddings;
-    _radius = radius;
-    _button = button;
-    _input = input;
-    _text = text;
-    _misc = misc;
+  IThemeService({ required ITheme theme }) {
+    _theme = theme;
   }
 
-  /// Theme
-  ColorSet get light;
-  ColorSet get dark;
-  /// Theme
+  ThemeData get themeData;
 
   /// Input theme
   CdxInputThemeData get inputTheme;
@@ -57,15 +39,11 @@ abstract class IThemeService {
   CdxButtonThemeData get buttonTheme;
   /// Button theme
 
-  String get fontFamilyBold;
-
-  ThemeData get themeData;
-
   ColorSet? _colorConfiguration;
 
-  void setTheme(AppTheme theme) {
-    _theme = theme;
-    _colorConfiguration = theme == AppTheme.dark ? dark : light;
+  void setTheme(ThemeType theme) {
+    _themeType = theme;
+    _colorConfiguration = theme == ThemeType.dark ? dark : light;
   }
 
   ScreenType _screenType = ScreenType.mobile;
@@ -75,7 +53,7 @@ abstract class IThemeService {
   bool get isTablet => _screenType == ScreenType.tablet;
   bool get isDesktop => _screenType == ScreenType.desktop;
 
-  AppTheme get currentTheme => _theme;
+  ThemeType get currentTheme => _themeType;
 
   ColorSet colors() => _colorConfiguration!;
 }

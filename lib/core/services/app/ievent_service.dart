@@ -4,13 +4,13 @@ import '../../models/iapp_notification.dart';
 import 'itheme_service.dart';
 
 class IEventService {
-  final BehaviorSubject<AppTheme> _themeSbj = BehaviorSubject();
+  final BehaviorSubject<ThemeType> _themeSbj = BehaviorSubject();
   final BehaviorSubject<int> _adminTabSbj = BehaviorSubject();
   final BehaviorSubject<int> _userTabSbj = BehaviorSubject();
   final BehaviorSubject<IAppNotification> _notificationSbj = BehaviorSubject();
 
-  void updateTheme(AppTheme theme) => _themeSbj.add(theme);
-  Stream<AppTheme> getThemeStream() => _themeSbj.stream;
+  void updateTheme(ThemeType theme) => _themeSbj.add(theme);
+  Stream<ThemeType> getThemeStream() => _themeSbj.stream;
 
   void addAdminTabEvent(int index) => _adminTabSbj.add(index);
   Stream<int> getAdminTabStream() => _adminTabSbj.stream;
