@@ -19,11 +19,20 @@ abstract class IDatabasePlatform<T extends BaseObject> {
       {List<DataFilter>? subCollectionQuery,
       bool? useCursor,
       bool getCount = false,
-      int limit = limit});
+      int limit = limit,
+        List<OrderBy>? orderBy
+      });
   Future<Result<int, String, T?>> getItem({String? id, dynamic docRef});
   Future<Result<int, String, T>> createItem(T item);
   Future<Result<int, String, T>> updateItem(T item);
   Future<Result<int, String, T>> setItem(T item);
   Future<Result<int, String, T?>> deleteItem(String id);
   Future<Result<int, String, T?>> updateFields(String id, Map<String, dynamic> map);
+}
+
+class OrderBy {
+  final String field;
+  final bool descending;
+
+  OrderBy(this.field, {this.descending = false});
 }

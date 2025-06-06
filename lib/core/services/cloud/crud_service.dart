@@ -224,6 +224,7 @@ class CrudService<T extends BaseObject> implements ICrudService<T> {
     int limit = 1000,
     String channel = 'main',
     CrudStrategy strategy = const DefaultCrudStrategy(),
+    List<OrderBy>? orderBy
   }) async {
     final currentItems = _currentList(channel);
     if (strategy.pushNullFirst) {
@@ -244,7 +245,9 @@ class CrudService<T extends BaseObject> implements ICrudService<T> {
         subCollectionQuery: subCollectionQuery,
         useCursor: useCursor,
         getCount: getCount,
-        limit: limit));
+        limit: limit,
+        orderBy: orderBy
+    ));
     if (res.code == 0) {
       final items = res.data!;
       if (sortFunc != null) items.sort(sortFunc);
