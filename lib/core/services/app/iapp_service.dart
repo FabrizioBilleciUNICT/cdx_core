@@ -44,6 +44,14 @@ abstract class IAppService {
   Text normal16(String title, {TextData? data});
   Text normal18(String title, {TextData? data});
   Text normal20(String title, {TextData? data});
+  Text normal22(String title, {TextData? data});
+  Text normal24(String title, {TextData? data});
+  Text normal26(String title, {TextData? data});
+  Text normal28(String title, {TextData? data});
+  Text normal30(String title, {TextData? data});
+  Text normal32(String title, {TextData? data});
+  Text normal34(String title, {TextData? data});
+  Text normal36(String title, {TextData? data});
 
   Text bold10(String title, {TextData? data});
   Text bold12(String title, {TextData? data});
@@ -56,6 +64,11 @@ abstract class IAppService {
   Text bold22(String title, {TextData? data});
   Text bold24(String title, {TextData? data});
   Text bold26(String title, {TextData? data});
+  Text bold28(String title, {TextData? data});
+  Text bold30(String title, {TextData? data});
+  Text bold32(String title, {TextData? data});
+  Text bold34(String title, {TextData? data});
+  Text bold36(String title, {TextData? data});
 
 
   void openDialog(BuildContext context, Widget child);

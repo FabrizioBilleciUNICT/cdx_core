@@ -144,4 +144,6 @@ class TextMeasures {
 abstract class MiscMeasures {
   final double maxContentWidth;
   const MiscMeasures({required this.maxContentWidth});
+  
+  BoxConstraints bottomSheetConstraints(BuildContext context);
 }
