@@ -74,6 +74,17 @@ abstract class IAppService {
   void openDialog(BuildContext context, Widget child);
   void openBottomSheet(BuildContext context, Widget child);
 
+  void showInfoSnackbar(BuildContext context, String message);
+  void showErrorSnackbar(BuildContext context, String message);
+  void openConfirmationDialog(BuildContext context, {
+    required String title,
+    required String message,
+    required String confirmText,
+    required String cancelText,
+    required Function(bool) confirm,
+    Widget? messageWidget,
+  });
+
   void openAlertDialog(
       BuildContext context,
       String title,
