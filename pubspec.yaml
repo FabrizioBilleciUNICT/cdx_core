@@ -1,7 +1,8 @@
 name: cdx_core
 description: "CdxCore by Codedix"
-version: 0.0.1
-homepage:
+version: 0.0.2
+homepage: https://github.com/FabrizioBilleciUNICT/cdx_core
+repository: https://github.com/FabrizioBilleciUNICT/cdx_core
 
 environment:
   sdk: ^3.7.0
